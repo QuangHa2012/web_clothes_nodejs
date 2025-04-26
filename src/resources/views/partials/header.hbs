@@ -1,0 +1,119 @@
+<header class="header-section">
+    <div class="header-logo">
+        <a href="http://127.0.0.1:3000/" >
+            <img  loading="lazy" src="/img/logo_menu.png" alt="">
+        </a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light main-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto header-list">
+                <li class="nav-item  header-item">
+                    <a class="nav-link" href="/collections/all">SHOP ALL </span></a>
+                </li>
+                <li class="nav-item header-item">
+                    <a class="nav-link" href="/collections/tops">TOPS</a>
+                </li>
+                <li class="nav-item header-item">
+                    <a class="nav-link" href="/collections/bottoms">BOTTOMS </a>
+                </li>
+                <li class="nav-item header-item">
+                    <a class="nav-link" href="/collections/outerwear">OUTERWEAR </a>
+                </li>
+                <li class="nav-item header-item">
+                    <a class="nav-link" href="#">BAGS </a>
+                </li>
+                <li class="nav-item header-item">
+                    <a class="nav-link" href="#">ACCESSORIES </a>
+                </li>
+                <li class="nav-item header-item">
+                    <a class="nav-link" href="#">SALE </a>
+                </li>
+            </ul>
+
+
+            <div class="header-account-and-cart">
+            <span class="header-account-link dropdown">
+                {{#if user}}
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block;padding: 0;margin-right: 10px;">
+                     <img src="/img/avatar-df.png" alt="" class="avatar">
+                    {{user.username}} 
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    
+                        {{#if (eq user.role 'admin')}}
+                            
+                            <a class="dropdown-item" href="/collections/create">Đăng sản phẩm</a>
+                        {{/if}}
+                    <div class="dropdown-divider"></div>
+                        {{#if (eq user.role 'admin')}}
+                            <a class="dropdown-item" href="/me/stored/products">Sản phẩm của tôi</a>
+                        {{/if}}
+                    
+                    
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/accounts/logout">Đăng xuất</a> 
+                
+                {{else}}
+                    <a href="/accounts/login" id="btn-dn">Đăng nhập</a>/
+                    <a href="/accounts/register" id="btn-dk">Đăng ký</a>
+                {{/if}}
+                </div>
+
+            </span>
+            <span>
+                <a href="http://127.0.0.1:3000/carts" class="cart-icon">
+                    <div class="header__cart-wrap">
+                        <i class="fa-solid fa-cart-shopping "></i>
+                        <span class="header__cart-notice">{{cartItemCount}}</span>
+
+                        <div class="header__cart-list ">
+                            <img src="/img/no-cart.png" alt="" class="header__cart-list-no-cart-img">
+                            {{!<span class="header__cart-list-no-cart-msg">Chưa có sản phẩm</span>}}
+                            
+                            <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
+
+                            <ul class="header__cart-list-item">
+                                <!--Cart item-->
+                                {{#each cart}}
+                                <li class="header__cart-item">
+                                    <img src="{{this.product.img}}" alt="" class="header__cart-img">
+
+                                    <div class="header__cart-item-info">
+                                        <div class="header__cart-item-head">
+                                            <h5 class="header__cart-item-name">{{this.product.name}}</h5>
+                                            <div class="header__cart-item-price-wrap">
+                                                <span class="header__cart-item-price">{{formatPriceCart this.product.price}}</span>
+                                                <span class="header__cart-item-multiply">x</span>
+                                                <span class="header__cart-item-quantity">{{this.quantity}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="header__cart-item-body">
+                                            <span class="header__cart-item-desc">
+                                                Phân loại : {{this.product.category}}   
+                                            </span>
+                                            <a href="/carts/remove/{{this.product._id}}" class="header__cart-item-remove">Xoá</a>
+
+                                        </div>
+                                    </div>
+                                </li>
+                                {{/each}}
+                                
+                            </ul>
+                    </div>
+                </a>
+            </span>
+        </div>         
+        </div>
+
+        
+
+
+    </nav>
+    
+</div>

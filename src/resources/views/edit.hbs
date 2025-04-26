@@ -1,0 +1,31 @@
+<div class="form-create-products container mt-4">
+    <h3>Sửa sản phẩm</h3>
+
+    <form method="POST" action="/collections/{{product.id}}?_method=PUT">
+        <div class="form-group">
+            <label for="name">Tên sản phẩm</label>
+            <input type="text" class="form-control" value="{{product.name}}" id="name" name="name">{{!thêm trường value để lấy dữ liệu dễ chỉnh sửa}}
+        </div>
+        <div class="form-group">
+            <label for="sku">SKU</label>
+            <input type="text" class="form-control" value="{{product.sku}}" id="sku" name="sku">
+        </div>
+        <div class="form-group">
+            <label for="price">Giá sản phẩm</label>
+            <input type="number" class="form-control" value="{{product.price}}" id="price" name="price">
+        </div>
+        <div class="form-group">
+            <label for="img">Ảnh sản phẩm</label>
+            <input type="text" class="form-control" value="{{product.img}}" id="img" name="img">
+        </div>
+        <div class="form-group">
+            <label for="stock">Số lượng </label>
+            <input type="number" class="form-control" value="{{product.stock}}" id="stock" name="stock">
+        </div>
+        <div class="form-group">
+            <label for="category">Loại sản phẩm</label>
+            <input type="text" class="form-control" value="{{product.category}}" id="category" name="category">
+        </div>
+        <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+<h1>Giỏ Hàng</h1>
+
+{{#if cart.length}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tên Sản Phẩm</th>
+                <th scope="col">Ảnh sản phẩm</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Tổng</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each cart}}
+                <tr>
+                    <td>{{this.product.name}}</td>
+                    <td><img src="{{this.product.img}}" alt="Product Image" width="100"></td>
+                    <td>{{this.product.price}} VND</td>
+                    <td>{{this.quantity}}</td>
+                    <td>{{multiply this.product.price this.quantity}} VND</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <h3>Tổng Tiền: {{calculateTotal cart}} VND</h3>
+{{else}}
+    <p>Giỏ hàng của bạn hiện tại trống.</p>
+{{/if}}
+
+<a href="/orders/check-out" class="btn btn-primary">Tiến Hành Thanh Toán</a>

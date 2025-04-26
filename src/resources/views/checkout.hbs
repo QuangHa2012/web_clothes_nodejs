@@ -1,0 +1,34 @@
+<h2>Thanh toán</h2>
+
+{{#if cart.length}}
+  <table border="1" cellpadding="8" cellspacing="0" class="table table-bordered">
+    <thead>
+      <tr >
+        <th scope="col">Sản phẩm</th>
+        <th scope="col">Giá</th>
+        <th scope="col">Số lượng</th>
+        <th scope="col">Thành tiền</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each cart}}
+        <tr>
+          <td>{{this.product.name}}</td>
+          <td>{{this.product.price}} đ</td>
+          <td>{{this.quantity}}</td>
+          <td>{{multiply this.product.price this.quantity}} đ</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table> 
+
+  <h3>Tổng cộng: {{totalPrice}} đ</h3>
+
+  <form action="/orders/create_payment_momo" method="POST">
+     <input type="hidden" name="amount" value="{{totalPrice}}">
+    <button type="submit" class="btn btn-outline-dark">Thanh toán MOMO</button>
+  </form>
+
+{{else}}
+  <p>Giỏ hàng trống.</p>
+{{/if}}

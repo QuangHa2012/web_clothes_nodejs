@@ -1,0 +1,46 @@
+<div class="container-fluid product-detail">
+    <div class="row">
+        <div class="product-detail-info col-lg-4 col-12 order-md-1 order-3">
+            <h2 class="product-detail-info-title">Thông tin</h2>
+            <p class="product-detail-info-des">{{product.des}}</p>
+        </div>
+        <div class="product-detail-img-block col-lg-4 col-12 order-md-2 order-1">
+            {{!-- <img src="{{product.img}}" alt=""> --}}
+            <div id="carouselProductImages" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {{#each product.images}}
+                        <div class="carousel-item {{ifIndexZero @index}}">
+                            <img class="product-detail-img" src="{{this}}" alt="Slide {{@index}}">
+                        </div>
+                    {{/each}}
+                </div>
+                <a class="carousel-control-prev" href="#carouselProductImages" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselProductImages" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="product-detail-view-side col-lg-4 col-12 order-md-3 order-2">
+            <h1 class="product-detail-view-side-title">{{product.name}}</h1>
+            <p class="product-detail-view-side-sku">SKU:{{product.sku}}</p>
+            
+            <p class="product-detail-view-side-price">{{formatPriceCart product.price}}</p>
+
+            <div class="product-detail-btn-container">
+                <form action="" method="get">
+                    <button href="#" class="btn btn-dark btn-buy-item">Mua ngay</button>
+                </form>
+                
+                <!-- Thêm vào giỏ: Chuyển thành form để gửi POST request -->
+                <form action="/carts/add/{{product._id}}" method="POST">
+                    <button type="submit" class="btn btn-dark btn-add-card">Thêm vào giỏ</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>

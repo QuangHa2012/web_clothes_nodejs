@@ -1,0 +1,107 @@
+<div class="me-product-container mt-4">
+  <div class="me-product-header">
+    <h3>Sản phẩm đã xóa</h3>
+    <a href="/me/stored/products" class="me-product-header-icon"
+    ><i class="fa-solid fa-arrow-left"></i></a>
+  </div>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">SKU</th>
+                <th scope="col">Giá sản phẩm</th>
+                <th scope="col">Ảnh sản phẩm</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Loại sản phẩm</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.sku}}</td>
+                <td>{{this.price}}</td>
+                <td><img src="{{this.img}}" width="100" alt="Ảnh sản phẩm"></td>
+                <td>{{this.stock}}</td>
+                <td>{{this.category}}</td>
+                <td>
+                    <a href="" class="btn btn-outline-danger btn-delete" data-toggle="modal" data-target="#delete-product-modal" data-id="{{this._id}}">Xóa</a>
+                    <a href="" class="btn btn-outline-warning btn-restore" data-id="{{this._id}}">Khôi phục</a>
+                </td>
+            </tr>
+
+            {{else}}
+            <tr>
+                <td colspan="8" class="text-center">Danh sách trống.
+                  <a href="/me/stored/products">Trở về.</a>
+                </td>
+                   
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+{{!hidden form}}
+<form method="POST" name="delete-product-form"></form>
+<form method="POST" name="restore-product-form"></form>
+
+
+{{! Modal Xóa sản phẩm }}
+<div class="modal" tabindex="-1" role="dialog" id="delete-product-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn chắc chắn muốn xóa sản phẩm?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-delete-product">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let productId;
+        var deleteProductForm = document.forms['delete-product-form'];
+        var restoreProductForm = document.forms['restore-product-form'];
+        var deleteButtonProduct = document.querySelector('.btn-delete-product');
+        var ButtonRestore = $('.btn-restore');
+
+        $('#delete-product-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            productId = button.data('id') // Extract info from data-* attributes
+            //console.log(productId);
+        })
+
+        
+        
+        deleteButtonProduct.onclick = function() {
+    
+            deleteProductForm.action = '/collections/' + productId + '/force?_method=DELETE';
+            deleteProductForm.submit();
+        }
+
+        console.log(ButtonRestore);
+
+        ButtonRestore.click(function(e) {
+            e.preventDefault(); 
+            
+            var productId = $(this).data('id'); // Get the product ID from the data-id attribute
+            restoreProductForm.action = '/collections/' + productId + '/restore?_method=PATCH'; // Set the form action to the restore route
+            restoreProductForm.submit(); // Submit the form to restore the product
+        });
+    });
+    
+</script>

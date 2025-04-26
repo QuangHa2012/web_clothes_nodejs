@@ -1,0 +1,46 @@
+{
+  "dependencies": {
+    "axios": "^1.9.0",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.12.1",
+    "mongoose-delete": "^1.0.2",
+    "mongoose-slug-updater": "^3.3.0",
+    "nodejs": "^0.0.0",
+    "slugify": "^1.6.6"
+  },
+  "name": "web_nodejs",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "watch": "sass --embed-source-map --watch src/resources/scss/app.scss src/public/css/app.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuangHa2012/web_clothes_nodejs.git"
+  },
+  "keywords": [
+    "clothes",
+    "nodejs",
+    "project"
+  ],
+  "author": "QuangHa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuangHa2012/web_clothes_nodejs/issues"
+  },
+  "homepage": "https://github.com/QuangHa2012/web_clothes_nodejs#readme",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "sass": "^1.85.1"
+  }
+}
