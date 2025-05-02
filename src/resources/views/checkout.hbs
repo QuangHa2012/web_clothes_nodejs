@@ -21,7 +21,15 @@
       {{/each}}
     </tbody>
   </table> 
+  <form action="/discounts/apply-discount" method="POST">
+      <input type="text" name="discountCode" placeholder="Mã giảm giá" required />
+      <button type="submit">Sử dụng</button>
+  </form>
 
+  {{#if discount}}
+    <p>Mã giảm giá áp dụng: {{discount}}</p>
+    <p>Giảm giá: -{{discountAmount}} VNĐ</p>
+  {{/if}}
   <h3>Tổng cộng: {{totalPrice}} đ</h3>
 
   <form action="/orders/create_payment_momo" method="POST">
